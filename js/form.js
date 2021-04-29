@@ -3,13 +3,20 @@
  */
 (function() {
 	//let map = document.querySelector(".map");
-	let mainPin = document.querySelector('.map__pin--main');
+let mainPin = document.querySelector('.map__pin--main');
 let adForm = document.querySelector(".ad-form");
 let fieldSets = adForm.children;
 window.util.setDisabled(fieldSets);
 
 let addressElement = adForm.querySelector('#address');
 addressElement.value = `${parseInt(mainPin.style.left)}, ${parseInt(mainPin.style.top)}`;
+
+adForm.addEventListener('submit', (evt)=> {
+	window.backend.save(new FormData(adForm), () => {
+		//onSuccess
+	}, onError);
+	evt.preventDefault();
+});
 
 //метод указания координат адреса метки
 function updateAddress(evt, pinHeight, pinTail) {
