@@ -6,8 +6,10 @@
 
 let map = document.querySelector(".map");
 (function() {
-	let pins = document.querySelector(".map__pins");
-	let list = window.data.generateListAds();
+	//let pins = document.querySelector(".map__pins");
+	// let list = window.data.generateListAds();
+	//let listOfPins = [];
+
 	let clickedPin = null;
 	let currentCard = null;
 	
@@ -52,9 +54,11 @@ let map = document.querySelector(".map");
 	
 		pinsTokio.appendChild(fragment);
 	}
+
+
 	
 	window.map = {
-		list: list,
+		//list: listOfPins,
 		generatePins: generatePins,
 		hideOffer: hideOffer,
 		activateOffer: activateOffer

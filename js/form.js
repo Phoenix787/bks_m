@@ -32,8 +32,27 @@ function activateMap() {
 	for(let el of fieldSets) {
 		el.removeAttribute('disabled');
 	}
-	window.map.generatePins(window.map.list);
+	//window.map.generatePins(window.map.list);
+	window.backend.load((list) => {
+		window.map.generatePins(list);
+		
+	}, onError);
 }
+
+
+function onError(message) {
+	let divError = document.createElement('div');
+	divError.classList.add('error');
+	divError.textContent = message;
+
+	document.body.appendChild(divError);
+
+	setTimeout(() => {
+		divError.classList.add('hidden');
+
+	}, 6000);
+}
+
 
 window.form = {
 	activateMap: activateMap,
