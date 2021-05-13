@@ -1,5 +1,8 @@
 (function () {
 
+	const DEBOUNCE_INTERVAL = 500;
+	
+
 	function setDisabled(elements){
 		for(let element of elements) {
 			element.setAttribute('disabled', 'disabled');
@@ -29,12 +32,26 @@
 		return mixed;
 	}
 
+	function debounce(fun) {
+		let lastTimeout = null;
+
+		return function() {
+			let args = arguments;
+			if(lastTimeout) {
+				window.clearTimeout(lastTimeout);
+			}
+			lastTimeout = window.setTimeout(function() {
+				fun.apply(null, args);
+			}, DEBOUNCE_INTERVAL);
+		}
+	}
+
 	window.util = {
 		setDisabled: setDisabled,
 		generateRandomNumber: generateRandomNumber,
 		getArrayLength: getArrayLength,
-		shuffleArray: shuffleArray
-
+		shuffleArray: shuffleArray,
+		debounce: debounce
 
 	}
 })();

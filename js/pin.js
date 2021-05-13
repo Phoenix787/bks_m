@@ -75,8 +75,5 @@ mainPin.addEventListener('mousedown', (evt) => {
 		document.addEventListener('mouseup', onPinMouseUp);
 	}
 
-	
-
-
 });
 })();

@@ -41,7 +41,8 @@ function activateMap() {
 	}
 	//window.map.generatePins(window.map.list);
 	window.backend.load((list) => {
-		window.map.generatePins(list);
+	//	window.map.generatePins(list);
+		window.map.successLoadedData(list);
 		
 	}, onError);
 }

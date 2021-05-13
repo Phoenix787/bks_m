@@ -2,6 +2,8 @@
  * модуль, который управляет карточками объявлений и пинами: 
  * добавляет на страницу нужную карточку, отрисовывает пины 
  * и осуществляет взаимодействие карточки и метки на карте
+ * 
+ * generatePins(list)
  */
 
 let map = document.querySelector(".map");
@@ -12,9 +14,13 @@ let map = document.querySelector(".map");
 
 	let clickedPin = null;
 	let currentCard = null;
+	let loadedOffers = [];
 	
 	
-	//------------------------------------------------------------------------
+	/**
+	 * функция, которая открывает карточку метки-объявления
+	 * @param {*} evt - текущая метка
+	 */
 	function activateOffer(evt) {
 				if (clickedPin) {
 					hideOffer();
@@ -33,12 +39,17 @@ let map = document.querySelector(".map");
 		}
 	}
 	
+	/**
+	 * функция, которая генерирует метки на карте
+	 * @param {*} list - список меток 
+	 */
 	function generatePins(list) {
 		let pinsTokio = document.querySelector(".map__pins");
 		let fragment = document.createDocumentFragment();
 		let templateMapPin = document
 			.querySelector("#pin")
 			.content.querySelector(".map__pin");
+
 		for (let i = 0; i < list.length; i++) {
 			let element = templateMapPin.cloneNode(true);
 			element.children[0].src = list[i].author.avatar;
@@ -56,12 +67,31 @@ let map = document.querySelector(".map");
 	}
 
 
+	function successLoadedData(list) {
+		loadedOffers = list;
+		let  filtered = window.filter.filterOffers(loadedOffers);
+		generatePins(filtered);
+		console.log(filtered);
+	}
+
+	function clearPins() {
+		let mapPins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
+		mapPins.forEach((item) => item.parentNode.removeChild(item));
+	}
 	
+	window.filter.setCallback(() => {
+		hideOffer();
+		clearPins();
+		let  filtered = window.filter.filterOffers(loadedOffers).slice(0, 5);
+		generatePins(filtered);
+	});
+
 	window.map = {
 		//list: listOfPins,
-		generatePins: generatePins,
+	//	generatePins: generatePins,
 		hideOffer: hideOffer,
-		activateOffer: activateOffer
+		activateOffer: activateOffer,
+		successLoadedData: successLoadedData
 	}
 })();
 
