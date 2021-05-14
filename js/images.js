@@ -8,7 +8,44 @@
 	
 	// добавлять фотографии в контейнер ad-form__photo
 	adFileChooser.addEventListener('change', () => {
-		let file = adFileChooser.files[0];
+
+		handleFiles(adFileChooser.files);
+		// let file = adFileChooser.files[0];
+		// let fileName = file.name.toLowerCase();
+	
+		// let matches = window.util.FILE_TYPE.some((it) => fileName.endsWith(it));
+	
+		// if (matches) {
+		// 	let reader = new FileReader();
+	
+		// 	reader.addEventListener('load', (e) => {
+		// 		addPhoto(adPhotoContainer, reader.result);
+		// 	});
+		// 	reader.readAsDataURL(file);
+		// }
+	});
+
+	adPhotoUpload.addEventListener('dragenter', (e) => {
+		e.stopPropagation();
+		e.preventDefault();
+	});
+
+	adPhotoUpload.addEventListener('dragover', (e)=> {
+		e.stopPropagation();
+		e.preventDefault();
+	});
+
+	adPhotoUpload.addEventListener('drop', (e) => {
+		e.stopPropagation();
+		e.preventDefault();
+		let dt = e.dataTransfer;
+		let files = dt.files;
+		handleFiles(files);
+
+	});
+
+	function handleFiles(files) {
+		let file = files[0];
 		let fileName = file.name.toLowerCase();
 	
 		let matches = window.util.FILE_TYPE.some((it) => fileName.endsWith(it));
@@ -21,7 +58,7 @@
 			});
 			reader.readAsDataURL(file);
 		}
-	});
+	}
 	
 	//создать элемент img, присвоить src выбранный файл, добавить его в div.ad-for__photo 
 	//и добавить этот див в ad-form__photo-container
