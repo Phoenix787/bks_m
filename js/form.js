@@ -5,6 +5,9 @@
 	//let map = document.querySelector(".map");
 let mainPin = document.querySelector('.map__pin--main');
 let adForm = document.querySelector(".ad-form");
+
+
+
 let fieldSets = adForm.children;
 window.util.setDisabled(fieldSets);
 
@@ -47,7 +50,6 @@ function activateMap() {
 	}, onError);
 }
 
-
 function onError(message) {
 	let divError = document.createElement('div');
 	divError.classList.add('error');
@@ -60,6 +62,7 @@ function onError(message) {
 
 	}, 6000);
 }
+
 
 
 window.form = {

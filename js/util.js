@@ -1,6 +1,7 @@
 (function () {
 
 	const DEBOUNCE_INTERVAL = 500;
+	const FILE_TYPE = ['gif', 'jpg', 'jpeg', 'png'];
 	
 
 	function setDisabled(elements){
@@ -45,13 +46,33 @@
 			}, DEBOUNCE_INTERVAL);
 		}
 	}
+/**
+ * 
+ * @param {*} files файлы выбранные пользователем с помощью <input type=file>
+ * @param {*} srcOfElem элемент с атрибутом src
+ */
+	function handleFiles(files, srcOfElem) {
+		let file = files[0];
+		let fileName = file.name.toLowerCase();
+	
+		let matches = FILE_TYPE.some((it) => fileName.endsWith(it));
+	
+		if (matches) {
+			let reader = new FileReader();
+			reader.addEventListener('load', (e) => {
+				srcOfElem.src = reader.result;
+			});
+			reader.readAsDataURL(file);
+		}
+	}
 
 	window.util = {
 		setDisabled: setDisabled,
 		generateRandomNumber: generateRandomNumber,
 		getArrayLength: getArrayLength,
 		shuffleArray: shuffleArray,
-		debounce: debounce
-
+		debounce: debounce,
+		handleFiles: handleFiles,
+		FILE_TYPE: FILE_TYPE
 	}
 })();
