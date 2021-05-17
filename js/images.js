@@ -10,19 +10,7 @@
 	adFileChooser.addEventListener('change', () => {
 
 		handleFiles(adFileChooser.files);
-		// let file = adFileChooser.files[0];
-		// let fileName = file.name.toLowerCase();
-	
-		// let matches = window.util.FILE_TYPE.some((it) => fileName.endsWith(it));
-	
-		// if (matches) {
-		// 	let reader = new FileReader();
-	
-		// 	reader.addEventListener('load', (e) => {
-		// 		addPhoto(adPhotoContainer, reader.result);
-		// 	});
-		// 	reader.readAsDataURL(file);
-		// }
+		
 	});
 
 	adPhotoUpload.addEventListener('dragenter', (e) => {
@@ -76,5 +64,4 @@
 		container.insertBefore(divPhoto, adPhotoDiv);
 	}
 
-	//TODO: drag-and-drop
 })();
