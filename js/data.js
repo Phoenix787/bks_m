@@ -94,40 +94,6 @@ function generateListAds() {
 
   return result;
 }
-// function generateCardAdv(item) {
-//   let avatar = item.author.avatar;
-//   let templateCard = document
-//     .querySelector("#card")
-//     .content.querySelector(".map__card");
-//   let element = templateCard.cloneNode(true);
-//   element.querySelector(".popup__avatar").src = avatar;
-//   element.querySelector(".popup__title").textContent = item.offer.title;
-//   element.querySelector(".popup__text--address").textContent =
-//     item.offer.address;
-//   element.querySelector(".popup__text--price").textContent = getPrice(item);
-// 	element.querySelector(".popup__type").textContent = translateType(item);
-// 	element.querySelector(".popup__text--capacity").textContent = getGuestsAndRooms(item);
-// 	element.querySelector(".popup__text--time").textContent = getChecinCheckout(item);
-// 	let featuresDiv = element.querySelector('.popup__features');
-// 	removeChilds(featuresDiv);
-// 	featuresDiv.appendChild(generateFeatures(item.offer.features));
-// 	element.querySelector(".popup__description").textContent = item.offer.description;
-
-// 	let photosBlock = element.querySelector(".popup__photos");
-// 	let tmp = element.querySelector(".popup__photo")
-// 	photosBlock.removeChild(tmp);
-// 	photosBlock.appendChild(generatePhotos(item))
-
-//   map.insertBefore(element, map.children[0]);
-
-// 	function removeChilds(element) {
-// 		while(element.firstChild) {
-// 			element.removeChild(element.firstChild);
-// 		}
-// 	}
-// 	return element;
-// }
-
 //-------------------------------------------------------------------------
 
 function generateAvatars() {

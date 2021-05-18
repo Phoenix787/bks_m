@@ -1,13 +1,22 @@
 /**
  * модуль, который отвечает за создание пина — метки на карте
  */
-
+ 'use strict';
 
 (function () {
+	
 	let mainPin = document.querySelector('.map__pin--main');
 	let pins = document.querySelector(".map__pins");
-
-
+	
+	const PIN_WIDTH = mainPin.offsetWidth;
+	const PIN_HEIGHT = mainPin.offsetHeight;
+	const PIN_TAIL = 22;
+	const MOUSE_LEFT_BUTTON = 0;
+	const MIN_MAP_Y = 130 - PIN_TAIL;
+	const MAX_MAP_Y = 630  - PIN_TAIL;
+	const MIN_MAP_X = pins.offsetLeft;
+	const MAX_MAP_X = pins.offsetWidth  - PIN_WIDTH;
+	
 	let Rect = function(left, top, right, bottom) {
 		this.left = left;
 		this.top = top;
@@ -59,14 +68,6 @@
 
 //let boundsOfMap = map.getBoundingClientRect();
 
-const PIN_WIDTH = mainPin.offsetWidth;
-const PIN_HEIGHT = mainPin.offsetHeight;
-const PIN_TAIL = 22;
-const MOUSE_LEFT_BUTTON = 0;
-const MIN_MAP_Y = 130 - PIN_TAIL;
-const MAX_MAP_Y = 630  - PIN_TAIL;
-const MIN_MAP_X = pins.offsetLeft;
-const MAX_MAP_X = pins.offsetWidth  - PIN_WIDTH;
 
 mainPin.addEventListener('mousedown', (evt) => {
 	evt.preventDefault();

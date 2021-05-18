@@ -6,8 +6,10 @@
  * generatePins(list)
  */
 
-let map = document.querySelector(".map");
+ 'use strict';
+
 (function() {
+	let map = document.querySelector(".map");
 	//let pins = document.querySelector(".map__pins");
 	// let list = window.data.generateListAds();
 	//let listOfPins = [];
@@ -71,7 +73,7 @@ let map = document.querySelector(".map");
 		loadedOffers = list;
 		let  filtered = window.filter.filterOffers(loadedOffers);
 		generatePins(filtered);
-		console.log(filtered);
+		//console.log(filtered);
 	}
 
 	function clearPins() {

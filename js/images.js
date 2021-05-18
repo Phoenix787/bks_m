@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
 	let adForm = document.querySelector(".ad-form");
 	let adPhotoUpload = adForm.querySelector('.ad-form__upload');

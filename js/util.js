@@ -1,3 +1,4 @@
+'use strict';
 (function () {
 
 	const DEBOUNCE_INTERVAL = 500;
@@ -46,7 +47,9 @@
 			}, DEBOUNCE_INTERVAL);
 		}
 	}
+
 /**
+ * обработчик для файлов загруженных пользователем
  * 
  * @param {*} files файлы выбранные пользователем с помощью <input type=file>
  * @param {*} srcOfElem элемент с атрибутом src
