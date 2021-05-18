@@ -128,7 +128,7 @@ mainPin.addEventListener('mousedown', (evt) => {
 	
 		let onPinMouseUp = (upEvt) => {
 			upEvt.preventDefault();
-			window.form.updateAddress(upEvt, PIN_HEIGHT, PIN_TAIL);
+			window.form.updateAddress(mainPin, PIN_HEIGHT, PIN_TAIL);
 			document.removeEventListener('mousemove', onPinMouseMove);
 			document.removeEventListener('mouseup', onPinMouseUp);
 		}

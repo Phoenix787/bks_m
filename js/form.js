@@ -56,7 +56,6 @@
 		function enableItems(element, availableOptions) {
 			for(let i = 0; i < element.options.length; i++) {
 				if(availableOptions.indexOf(+element.options[i].index) !== -1) {	
-					console.log(+element.options[i].index);				
 					element.options[i].disabled = false;
 				} else {
 					element.options[i].disabled = true;
@@ -68,17 +67,21 @@
   adForm.addEventListener("submit", (evt) => {
     window.backend.save(
       new FormData(adForm),
-      () => {
-        //onSuccess
-      },
-      onError
-    );
+			() => {
+				onSuccess();
+				window.backend.load((list) => {
+					window.map.successLoadedData(list);
+				}, onError);
+				//reset form
+			}, 
+      onError);
+			resetForm();
     evt.preventDefault();
   });
 
   //метод указания координат адреса метки
-  function updateAddress(evt, pinHeight, pinTail) {
-    let result = calcCenterOfPin(evt.clientX, evt.clientY);
+  function updateAddress(pin, pinHeight, pinTail) {
+    let result = calcCenterOfPin(parseInt(pin.style.left), parseInt(pin.style.top));
     addressElement.value = `${Math.round(result.x)}, ${Math.round(
       result.y + pinHeight / 2 + pinTail
     )}`;
@@ -99,19 +102,17 @@
     for (let el of fieldSets) {
       el.removeAttribute("disabled");
     }
-    //window.map.generatePins(window.map.list);
     window.backend.load((list) => {
-      //	window.map.generatePins(list);
       window.map.successLoadedData(list);
     }, onError);
   }
 
+	function resetForm() {
+		adForm.reset();
+		updateAddress(mainPin, mainPin.offsetHeight, 22);
+	}
+	
 	/**
-	 * <template id="error">
-    <div class="error">
-      <p class="error__message">Ошибка загрузки объявления</p>
-      <button class="error__button" href="#">Попробовать снова</button>
-    </div>
 	 * @param {*} message 
 	 */
   function onError(message) {
@@ -125,9 +126,30 @@
     document.body.appendChild(divError);
 
     setTimeout(() => {
-      divError.classList.add("hidden");
+			document.body.removeChild(divError);
+      //divError.classList.add("hidden");
     }, 5000);
   }
+/**
+ * 
+ * @param {*} message 
+ */
+	function onSuccess() {
+		let divSuccess = document.createElement("div");
+		let pSuccess = document.createElement('p');
+		divSuccess.classList.add("success");
+		pSuccess.classList.add("success__message");
+    pSuccess.textContent = "Успешно";
+		divSuccess.appendChild(pSuccess);
+
+    document.body.appendChild(divSuccess);
+		activateMap();
+
+    setTimeout(() => {
+			document.body.removeChild(divSuccess);
+     // divSuccess.classList.add("hidden");
+    }, 3000);
+	}
 
   window.form = {
     activateMap: activateMap,

@@ -20,7 +20,7 @@
 		xhr.addEventListener('load', () => {
 			switch (xhr.status) {
 				case serverCode.SUCCESS:
-					onSuccess(xhr.response);
+					onSuccess(xhr.response); //xhr.response
 					break;
 				case serverCode.BAD_REQUEST:
 					onError("Неправильный запрос");

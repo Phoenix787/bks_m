@@ -7,6 +7,8 @@
 
 	function generateCardAdv(item) {
 		let avatar = item.author.avatar;
+		let map = document.querySelector(".map");
+
 		let templateCard = document
 			.querySelector("#card")
 			.content.querySelector(".map__card");
