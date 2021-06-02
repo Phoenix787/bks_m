@@ -1,6 +1,6 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
-* Студент: [Любовь Чистова](https://up.htmlacademy.ru/javascript/16/user/424141).
+* Студент: [xxx]().
 * Наставник: `Неизвестно`.
 
 ---
